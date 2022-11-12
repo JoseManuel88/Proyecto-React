@@ -1,0 +1,28 @@
+$layout_bp_mobile: 320px;
+$layout_bp_tablet: 600px;
+$layout_bp_desktop: 1024px;
+$layout_bp_big_desktop: 1400px;
+
+@mixin mobile {
+    @media only screen and (min-width: #{$layout_bp_mobile}) {
+      @content;
+    }
+  }
+
+@mixin tablet {
+  @media only screen and (min-width: #{$layout_bp_tablet}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: #{$layout_bp_desktop}) {
+    @content;
+  }
+}
+
+@mixin big_desktop {
+  @media only screen and (min-width: #{$layout_bp_big_desktop}) {
+    @content;
+  }
+}

@@ -1,0 +1,62 @@
+@import "../styles/mixins.scss";
+
+.dropdown-menu {
+  position: absolute;
+  /* width: max-content; */
+  top: 5em;
+  right: 0;
+  background-color: #c6c4c4;
+  /* padding: 2em 0; */
+  border-radius: 2em 0 0 2em;
+  /* color: white; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* gap: 1.2em; */
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0.2em 0.2em;
+    text-align: center;
+
+    li {
+      padding: 0.3em 1em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline rgba(0, 0, 0, 0);
+      text-underline-offset: 0.3em;
+      transition: all 500ms;
+
+      &:hover {
+        text-decoration-color: rgba(255, 0, 0, 1);
+      }
+    }
+  }
+
+  .separator {
+    width: 100%;
+    padding: 0;
+    height: 0.05em;
+    background-color: rgba(27, 26, 26, 0.128);
+  }
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s linear;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.5s linear;
+}
