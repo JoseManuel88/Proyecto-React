@@ -1,10 +1,10 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { errors, useForm } from 'react-hook-form';
 import "../../styles/Formulario.scss";
 
 const Formulario = () => {
 
-  const { register, handleSubmit } = useForm();
+  const { register, formState: { errors }, handleSubmit } = useForm();
   
   const onSubmit = (data) => {
 console.log(data);
@@ -12,28 +12,31 @@ console.log(data);
 
   return (
     <div className='formulario'>
-      <h2>Registro de usuario</h2>
+      <h2>Formulario</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label>Nombre</label>
-          <input type="text" name="" />
+        <div className='inputForm'>
+          
+          <input type="text" {...register('nombre', {
+            required: true,
+            maxLength: 15
+
+          })} placeholder='Nombre de ususario'/>
+          {errors.nombre?.type === 'required' && <p>El campo nombre es requerido</p>}
+          {errors.nombre?.type === 'maxLength' && <p>El campo nombre debe tener menos de 15 caracteres</p>}
         </div>
-        <div>
-          <label>Direccion</label>
-          <input type="text" name="" />
+        <div className='inputForm'>
+         
+          <input type="email" {...register('email', {
+           pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i
+          })} placeholder='Introduce tu email' />
+          {errors.email?.type === 'pattern' && <p>El formato del email es incorrecto</p>}
         </div>
-        <div>
-          <label>Edad</label>
-          <input type="text" name="" />
+        <div className='inputForm'>
+          <input type="text" {...register('contraseña', {
+            required:true
+          })} placeholder='Contraseña'/>
         </div>
-        <div>
-          <label>Pais</label>
-          <select>
-            <option value="es">España</option>
-            <option value="it">Italia</option>
-            <option value="fr">Francia</option>
-          </select>
-        </div>
+        
         <input type="submit" value="Enviar"/>
       </form>
     </div>
