@@ -1,29 +1,47 @@
 @import url("https://fonts.googleapis.com/css2?family=Caveat&family=Raleway:wght@300;500&display=swap");
 .posts {
+  font-size: 2vw;
   padding: 1rem;
-  max-width: 80%;
+  max-width: 90%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 2em;
+  gap: 1em;
   font-family: "Raleway", sans-serif;
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 0.8em;
+  }
+  h3{
+    font-size: 0.5em;
   }
   img {
     float: left;
     width: 300px;
     height: 300px;
     object-fit: cover;
+    transition: ease 500ms;
   }
 
+  a {
+    text-decoration: none;
+    color: inherit;
+}
+
   .post {
+    border-radius: 5%;
     display: flex;
+    padding: 0.5em;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: antiquewhite;
     max-height: fit-content;
+    &:hover {
+        img{
+            width: 400px;
+            transition: ease 500ms;
+        }
+    }
   }
 }

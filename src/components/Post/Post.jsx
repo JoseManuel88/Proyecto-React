@@ -1,42 +1,32 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux'
-import { getPost } from '../../redux/post/post.actions';
+import { useDispatch, useSelector } from "react-redux";
+import { getPosts } from "../../redux/post/post.actions";
 import "../../styles/Posts.scss";
 
-
 const Post = () => {
-    const dispatch = useDispatch();
-    const {isLoading, posts, error} = useSelector((state)=>state.post)
-    useEffect(()=>{
-        dispatch(getPost())
-    },[])
-    return (  
-    <div className='posts'>
-     {isLoading && (
-        <h1>Cargando posts...</h1>
-     )
-     }
-     {posts && (
-        
-        posts.map((post)=>{
-        
-            {/* let postText = post.text.replace(/\n/g,"<br>"); */}
-            return (
-                <div className='post' key={post._id}>
-                <h2>{post.title}</h2>
-                <h3>{post.subtitle}</h3>
-                <img src={post.img} alt={post.title} />
-                <Link to={`/post/${post._id}`}>Ver detalles</Link>
-                {/* <p dangerouslySetInnerHTML={{__html: postText}}/> */}
-                </div>
-            )
-        })
-     )}
+  const dispatch = useDispatch();
+  const { isLoading, posts, error } = useSelector((state) => state.post);
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
+  return (
+    <div className="posts">
+      {isLoading && <h1>Cargando posts...</h1>}
+      {posts &&
+        posts.map((post) => {
+          return (
+            <Link to={`/post/${post._id}`} key={post._id}>
+            <div className="post">
+              <h2>{post.title}</h2>
+              <img src={post.img} alt={post.title} />
+              <h3>{post.subtitle}</h3>
+            </div>
+            </Link>
+          );
+        })}
     </div>
-     
-  )
-}
+  );
+};
 
-
-export default Post
+export default Post;
