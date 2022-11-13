@@ -31,7 +31,9 @@ const Header = () => {
   return (
     <div className="header">
       <div className="logo">
-        <h2>Recetario de la abuela</h2>
+        <NavLink to="/">
+          <h2>Recetario de la abuela</h2>
+        </NavLink>
       </div>
       <nav className="navbar">
         {user && (
