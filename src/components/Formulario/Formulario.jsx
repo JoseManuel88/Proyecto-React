@@ -37,36 +37,44 @@ const Formulario = (type) => {
           <h2>Login</h2>
           <form onSubmit={handleSubmit(login)}>
             <div className="inputForm">
+            <label htmlFor="username">
+                <p>Nombre de Usuario</p>
+              </label>
               <input
+              id="username"
                 type="text"
                 {...register("username", {
                   required: true,
                   maxLength: 15,
                 })}
-                placeholder="Nombre de usuario"
               />
               {errors.username?.type === "required" && <p>El campo nombre es requerido</p>}
               {errors.username?.type === "maxLength" && <p>El campo nombre debe tener menos de 15 caracteres</p>}
             </div>
             <div className="inputForm">
+            <label htmlFor="email">
+                <p>Email</p>
+              </label>
               <input
-                type="email"
+              id="email"
+                type="text"
                 {...register("email", {
                   required: true,
                   pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
                 })}
-                placeholder="Introduce tu email"
               />
               {errors.email?.type === "required" && <p>El campo email es requerido</p>}
               {errors.email?.type === "pattern" && <p>El formato del email es incorrecto</p>}
             </div>
             <div className="inputForm">
+            <label htmlFor="password">
+                <p>Password</p>
+              </label>
               <input
                 type="password"
                 {...register("password", {
                   required: true,
                 })}
-                placeholder="Contraseña"
               />
               {errors.password?.type === "required" && <p>El campo password es requerido</p>}
             </div>
@@ -102,7 +110,7 @@ const Formulario = (type) => {
             <div className="inputForm">
               <input
                 id="email"
-                type="email"
+                type="text"
                 {...register("email", {
                   required: true,
                   pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
