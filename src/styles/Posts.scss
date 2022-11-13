@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Raleway:wght@300;500&display=swap");
+.posts {
+  padding: 1rem;
+  max-width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2em;
+  font-family: "Raleway", sans-serif;
+
+  h2 {
+    font-size: 1.5rem;
+  }
+  img {
+    float: left;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  .post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+    max-height: fit-content;
+  }
+}
