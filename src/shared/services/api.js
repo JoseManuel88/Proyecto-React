@@ -14,7 +14,7 @@ const APIHeaders = {
 
 
 export const API = axios.create({
-    baseURL: process.env.REACT_APP_BACK_URL,
+    baseURL: 'https://proyecto-final-react-seven.vercel.app/',
     timeout: 5000,
     headers: APIHeaders
 })

@@ -36,7 +36,7 @@ const Formulario = (type) => {
         <>
           <h2>Login</h2>
           <form onSubmit={handleSubmit(login)}>
-            <div className="inputForm">
+            {/* <div className="inputForm">
             <label htmlFor="username">
                 <p>Nombre de Usuario</p>
               </label>
@@ -50,7 +50,7 @@ const Formulario = (type) => {
               />
               {errors.username?.type === "required" && <p>El campo nombre es requerido</p>}
               {errors.username?.type === "maxLength" && <p>El campo nombre debe tener menos de 15 caracteres</p>}
-            </div>
+            </div> */}
             <div className="inputForm">
             <label htmlFor="email">
                 <p>Email</p>
