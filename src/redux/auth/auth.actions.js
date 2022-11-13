@@ -33,7 +33,13 @@ export const newUser = (formdata, navigate) => async(dispatch) =>{
         console.log(resultado);
         dispatch({type: 'register_user_ok'});
         console.log(resultado);
-        navigate('/login')
+        const result = await API.post('users/login', formdata)
+        console.log(result)
+        dispatch({ type: "login_user_ok", payload: result.data });
+        localStorage.setItem('token', result.data.token);
+        localStorage.setItem('user', result.data.userDB.username);
+        navigate('/');
+        
     } catch (error) {
         dispatch({type: 'register_user_error'});
     }
