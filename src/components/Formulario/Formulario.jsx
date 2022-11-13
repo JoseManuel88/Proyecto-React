@@ -80,7 +80,7 @@ const Formulario = (type) => {
             </div>
 
             <input type="submit" value="Enviar" />
-            <p onClick={() => setform("regist")}>¿Aún no tienes cuenta? Registrate aquí</p>
+            <p className="login--p" onClick={() => setform("regist")}>¿Aún no tienes cuenta? <span>Registrate aquí</span></p>
           </form>
         </>
       )}
@@ -158,7 +158,7 @@ const Formulario = (type) => {
 
             <input type="submit" value="Enviar" />
           </form>
-          <p onClick={() => setform("login")}>¿Ya tienes cuenta de usuario? Click aqui para entrar</p>
+          <p onClick={() => setform("login")}>¿Ya tienes cuenta de usuario? <span>Click aqui para entrar</span></p>
         </>
       )}
     </div>
