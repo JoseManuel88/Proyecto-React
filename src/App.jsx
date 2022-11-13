@@ -1,13 +1,25 @@
-
-import './styles/reset.scss';
-import Header from './components/Header/Header';
-import Formulario from './components/Formulario/Formulario';
+import { Route, Routes, useNavigate } from "react-router-dom";
+import {useDispatch} from 'react-redux';
+import "./styles/reset.scss";
+import Home from "./pages/Home";
+import { useEffect } from "react";
+import { checkSession } from './redux/auth/auth.actions';
+import Login from "./pages/Login";
 
 function App() {
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+  useEffect(() => {
+    token && dispatch(checkSession(token, navigate));
+  }, []);
+
   return (
     <div className="App">
-      <Header />
-      <Formulario />
+      <Routes>
+        <Route path="" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </div>
   );
 }

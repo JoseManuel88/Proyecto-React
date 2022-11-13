@@ -20,12 +20,11 @@
     margin: 0;
     padding: 0.2em 0.2em;
     text-align: center;
-
-    li {
-      padding: 0.3em 1em;
-    }
+    display: flex;
+    flex-direction: column;
 
     a {
+      padding: 0.3em 1em;
       color: inherit;
       text-decoration: underline rgba(0, 0, 0, 0);
       text-underline-offset: 0.3em;
@@ -46,6 +45,10 @@
 
   @include tablet {
     display: none;
+  }
+
+  .active {
+    color: lime;
   }
 }
 

@@ -1,11 +1,21 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
+import { NavLink } from "react-router-dom";
+import { logoutUser } from "../../redux/auth/auth.actions";
 import "../../styles/Header.scss";
 
 const Header = () => {
   const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
   const [menu_class, setMenuClass] = useState("menu hidden");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
+  const dispatch = useDispatch();
+
+  let user = localStorage.user;
+
+  const logout = (data) => {
+    dispatch(logoutUser(data));
+  };
 
   const updateMenu = () => {
     if (!isMenuClicked) {
@@ -24,24 +34,36 @@ const Header = () => {
         <h2>Recetario de la abuela</h2>
       </div>
       <nav className="navbar">
+        {user && (
+          <div className="logged-user">
+            <p>{user}</p>
+          </div>
+        )}
         <ul>
-          <a href="#">
-            <li>Recetas caseras </li>
-          </a>
-          <a href="#">
-            <li>Ensaladas</li>
-          </a>
-          <a href="#">
-            <li>Postres</li>
-          </a>
-          <a href="#">
-            <li>Helados</li>
-          </a>
+          <NavLink to="/recetas-caseras" className={({ isActive }) => (isActive ? "active" : "inactive")}>
+            Recetas caseras
+          </NavLink>
+          <NavLink to="/ensaladas" className={({ isActive }) => (isActive ? "active" : "inactive")}>
+            Ensaladas
+          </NavLink>
+          <NavLink to="/postres" className={({ isActive }) => (isActive ? "active" : "inactive")}>
+            Postres
+          </NavLink>
+          <NavLink to="/helados" className={({ isActive }) => (isActive ? "active" : "inactive")}>
+            Helados
+          </NavLink>
         </ul>
         <div className="login">
-          <a href="#">
-            <p>Login/registro</p>
-          </a>
+          {!user && (
+            <NavLink to="/login" className={({ isActive }) => (isActive ? "active" : "inactive")}>
+              Login/Registro
+            </NavLink>
+          )}
+          {user && (
+            <a href="#" onClick={() => logout()}>
+              Cerrar sesion
+            </a>
+          )}
         </div>
       </nav>
       <div className="burger-menu" onClick={updateMenu}>
