@@ -20,7 +20,8 @@ export const getComments = (ids) => async(dispatch)=> {
 export const postNewComment = (formData) => async(dispatch)=>{
     dispatch({type:'newComment'})
     try {
-        await API.post("comments/create/"+formData.postId, formData)
+        const res = await API.post("comments/create/"+formData.postId, formData)
+        console.log(res)
         const post = await axios.get('https://proyecto-final-react-seven.vercel.app/posts/'+formData.postId)
         const comments = post.data.comments
         dispatch(getComments(comments))

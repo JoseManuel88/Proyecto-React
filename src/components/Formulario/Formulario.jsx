@@ -32,6 +32,7 @@ const Formulario = ({ type, postId }) => {
 
   const comment = (data) => {
     dispatch(postNewComment(data, navigate));
+    document.getElementById("commentform").reset();
   };
 
   return (
@@ -159,13 +160,13 @@ const Formulario = ({ type, postId }) => {
           <form id="commentform" onSubmit={handleSubmit(comment)}>
             <input {...register("postId", { value: postId })} type="hidden" />
             <input {...register("author", { value: localStorage.userId })} type="hidden" />
-            <textarea
-              form="commentform"
+            <input type={"text"}
+            id="comment"
+            placeholder="Introduce aqui tu comentario"
               {...register("text", {
                 required: true,
-                maxLength: 15,
               })}
-            ></textarea>
+            ></input>
             <button type="submit">Comenta</button>
           </form>
         </>

@@ -15,7 +15,6 @@ const DetailedPost = () => {
   useEffect(() => {
     dispatch(getIndividualPost(id));
   }, []);
- console.log(detailPost)
   return (
     <div>
       {isLoading && <h2>Cargando datos...</h2>}
@@ -48,7 +47,6 @@ const DetailedPost = () => {
           <div className="detailed-post--comments">
             {detailPost.comments &&
                   <div>
-                  {console.log(detailPost.comments)}
                     <Comment ids={detailPost.comments} />
                   </div>
             }
