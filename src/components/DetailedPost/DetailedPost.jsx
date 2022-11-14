@@ -17,7 +17,7 @@ const DetailedPost = () => {
     <div>
       {isLoading && <h2>Cargando datos...</h2>}
       {error && <h2>{error.message}</h2>}
-      {detailPost && (
+      {detailPost.title && (
         <div className="detailed-post">
           <div className="detailed-post--text">
             <h2>{detailPost.title}</h2>
