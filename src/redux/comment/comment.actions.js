@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API } from "../../shared/services/api";
 
 export const getIndividualComment = (ids) => async(dispatch)=> {
     dispatch({type:'gettingComment'})
@@ -14,4 +15,14 @@ export const getIndividualComment = (ids) => async(dispatch)=> {
             
         }
     
+}
+export const postNewComment = (formData) => async(dispatch)=>{
+    dispatch({type:'newComment'})
+    console.log(formData);
+    try {
+        const res= await API.post("comments/create", formData)
+        console.log(res)
+    } catch (error) {
+        
+    }
 }

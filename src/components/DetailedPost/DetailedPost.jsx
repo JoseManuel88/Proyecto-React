@@ -2,8 +2,11 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getIndividualPost } from "../../redux/post/post.actions";
+import { useForm } from "react-hook-form";
 import "../../styles/DetailedPost.scss";
 import Comment from "../Comment/Comment";
+import Formulario from "../Formulario/Formulario";
+
 
 const DetailedPost = () => {
   const { id } = useParams();
@@ -52,6 +55,8 @@ const DetailedPost = () => {
             }
                
           </div>
+         <Formulario type='comment'/>
+            
         </div>
       )}
     </div>

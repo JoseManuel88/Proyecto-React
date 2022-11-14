@@ -42,8 +42,8 @@ const Header = () => {
           </div>
         )}
         <ul>
-          <NavLink to="/recetas-caseras" className={({ isActive }) => (isActive ? "active" : "inactive")}>
-            Recetas caseras
+          <NavLink to="/guisos" className={({ isActive }) => (isActive ? "active" : "inactive")}>
+            Guisos
           </NavLink>
           <NavLink to="/ensaladas" className={({ isActive }) => (isActive ? "active" : "inactive")}>
             Ensaladas
@@ -51,8 +51,11 @@ const Header = () => {
           <NavLink to="/postres" className={({ isActive }) => (isActive ? "active" : "inactive")}>
             Postres
           </NavLink>
-          <NavLink to="/helados" className={({ isActive }) => (isActive ? "active" : "inactive")}>
-            Helados
+          <NavLink to="/cocktails" className={({ isActive }) => (isActive ? "active" : "inactive")}>
+            Cocktails
+          </NavLink>
+          <NavLink to="/otros" className={({ isActive }) => (isActive ? "active" : "inactive")}>
+            Otros
           </NavLink>
         </ul>
         <div className="login">

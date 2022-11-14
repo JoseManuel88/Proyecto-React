@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser, newUser } from "../../redux/auth/auth.actions";
 import { useForm } from "react-hook-form";
 import "../../styles/Formulario.scss";
+import { postNewComment } from "../../redux/comment/comment.actions";
 
 const Formulario = (type) => {
   const {
@@ -28,6 +29,10 @@ const Formulario = (type) => {
 
   const regist = (data) => {
     dispatch(newUser(data, navigate));
+  };
+
+  const comment = (data) => {
+    dispatch(postNewComment(data, navigate));
   };
 
   return (
@@ -144,6 +149,20 @@ const Formulario = (type) => {
             <input type="submit" value="Enviar" />
           </form>
           <p onClick={() => setform("login")}>¿Ya tienes cuenta de usuario? <span>Click aqui para entrar</span></p>
+        </>
+      )}
+      {form === 'comment' && (
+        <>
+         <form id="commentform" onSubmit={handleSubmit(comment)}>
+         <input type="text"  {...register("author", {
+                  required: true,
+                })}>{localStorage.userId}</input>
+          <textarea form="commentform" {...register("text", {
+                  required: true,
+                  maxLength: 15,
+                })}></textarea>
+          <button type="submit" >Comenta</button>
+         </form>
         </>
       )}
     </div>
