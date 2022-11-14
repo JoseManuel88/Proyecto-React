@@ -5,6 +5,7 @@ import { loginUser, newUser } from "../../redux/auth/auth.actions";
 import { useForm } from "react-hook-form";
 import "../../styles/Formulario.scss";
 import { postNewComment } from "../../redux/comment/comment.actions";
+import { createPost } from "../../redux/newpost/newpost.actions";
 
 const Formulario = ({ type, postId }) => {
   const {
@@ -33,6 +34,15 @@ const Formulario = ({ type, postId }) => {
   const comment = (data) => {
     dispatch(postNewComment(data, navigate));
     document.getElementById("commentform").reset();
+  };
+  const newRecipe = (data) =>{
+    dispatch(createPost(data, navigate));
+    document.getElementById("recipeForm").reset();
+
+    const formData = new FormData();
+    formData.append("ingredientes", data.ingredintes[0]);
+    formData.append("cantidad", data.cantidad);
+    formData.append("imagen", data.imagen[0]);
   };
 
   return (
@@ -168,6 +178,37 @@ const Formulario = ({ type, postId }) => {
               })}
             ></input>
             <button type="submit">Comenta</button>
+          </form>
+        </>
+      )}
+      {form === "newRecipe" && (
+        <>
+          <form id="recipeForm" onSubmit={handleSubmit(newRecipe)}>
+            <label>Título
+            <input type={"text"} id="title"{...register("title",{required: true})}/>
+            </label>
+            <label>Subtítulo
+            <input type={"text"} id="subtitle" {...register("subtitle", {required: true})}/>
+            </label>
+            <label>Foto
+            <input type={"file"} id="img" {...register("img", {required: true})}/>
+            </label>
+            <label>Ingredientes
+            <input type={"text"} id="ingredients" {...register("ingredients", {required: true})}/>
+            <input type={"text"} id="quantity" {...register("quantity", {required: true})}/>
+            </label>
+            <label>Categoría
+            <select type={"select"} id="category" {...register("category", {required: true})}>
+              <option value="Guisos">Guisos</option>
+              <option value="Ensaladas">Ensaladas</option>
+              <option value="Postres">Postres</option>
+              <option value="Cocktails">Cocktails</option>
+              <option value="Otros">Otros</option>
+
+            </select>
+            
+            </label>
+            <button type="submit">Enviar receta</button>
           </form>
         </>
       )}

@@ -4,6 +4,7 @@ import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import { NavLink } from "react-router-dom";
 import { logoutUser } from "../../redux/auth/auth.actions";
 import "../../styles/Header.scss";
+import Formulario from "../Formulario/Formulario";
 
 const Header = () => {
   const [burger_class, setBurgerClass] = useState("burger-bar unclicked");
@@ -71,6 +72,9 @@ const Header = () => {
           )}
         </div>
       </nav>
+      <button type="submit" onSubmit={Formulario}>{user && (
+          <NavLink to= "/newRecipe" className={({isActive})=>(isActive ? "active" : "inactive")}>
+          Envíanos tu receta</NavLink>)}</button>
       <div className="burger-menu" onClick={updateMenu}>
         <div className={burger_class}></div>
         <div className={burger_class}></div>
