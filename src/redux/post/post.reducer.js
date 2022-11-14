@@ -8,7 +8,7 @@ const INITIAL_STATE= {
 const postReducer = (state=INITIAL_STATE, action) => {
     switch (action.type) {
         case "gettingPost":
-            return {...state, isLoading: true };
+            return {...INITIAL_STATE, isLoading: true };
         case "postsReceived":
             return {...state, isLoading: false, posts: action.payload};
         case "individualPostReceived":

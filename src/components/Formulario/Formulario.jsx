@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import "../../styles/Formulario.scss";
 import { postNewComment } from "../../redux/comment/comment.actions";
 
-const Formulario = (type) => {
+const Formulario = ({ type, postId }) => {
   const {
     register,
     formState: { errors },
@@ -15,8 +15,7 @@ const Formulario = (type) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
-  const [form, setform] = useState(type.type);
+  const [form, setform] = useState(type);
   const [password, setpassword] = useState("");
 
   const handlePassword = (event) => {
@@ -42,11 +41,11 @@ const Formulario = (type) => {
           <h2>Login</h2>
           <form onSubmit={handleSubmit(login)}>
             <div className="inputForm">
-            <label htmlFor="email">
+              <label htmlFor="email">
                 <p>Email</p>
               </label>
               <input
-              id="email"
+                id="email"
                 type="text"
                 {...register("email", {
                   required: true,
@@ -57,7 +56,7 @@ const Formulario = (type) => {
               {errors.email?.type === "pattern" && <p>El formato del email es incorrecto</p>}
             </div>
             <div className="inputForm">
-            <label htmlFor="password">
+              <label htmlFor="password">
                 <p>Password</p>
               </label>
               <input
@@ -70,7 +69,9 @@ const Formulario = (type) => {
             </div>
 
             <input type="submit" value="Enviar" />
-            <p className="login--p" onClick={() => setform("regist")}>¿Aún no tienes cuenta? <span>Registrate aquí</span></p>
+            <p className="login--p" onClick={() => setform("regist")}>
+              ¿Aún no tienes cuenta? <span>Registrate aquí</span>
+            </p>
           </form>
         </>
       )}
@@ -92,7 +93,9 @@ const Formulario = (type) => {
                 })}
               />
               {errors.username?.type === "required" && <p>El campo Nombre de Usuario es requerido</p>}
-              {errors.username?.type === "maxLength" && <p>El campo Nombre de Usuario debe tener menos de 15 caracteres</p>}
+              {errors.username?.type === "maxLength" && (
+                <p>El campo Nombre de Usuario debe tener menos de 15 caracteres</p>
+              )}
             </div>
             <label htmlFor="email">
               <p>Email</p>
@@ -135,34 +138,36 @@ const Formulario = (type) => {
               <input
                 id="password_repeat"
                 type="password"
-                {... register("password_repeat", {
+                {...register("password_repeat", {
                   required: true,
-                  validate: (value) =>
-                    value === password || "Los password no coinciden",
+                  validate: (value) => value === password || "Los password no coinciden",
                 })}
               />
-                {errors.password_repeat?.type === "required" && <p>El campo Repetir Password es requerido</p>}
-                {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
-
+              {errors.password_repeat?.type === "required" && <p>El campo Repetir Password es requerido</p>}
+              {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
             </div>
 
             <input type="submit" value="Enviar" />
           </form>
-          <p onClick={() => setform("login")}>¿Ya tienes cuenta de usuario? <span>Click aqui para entrar</span></p>
+          <p onClick={() => setform("login")}>
+            ¿Ya tienes cuenta de usuario? <span>Click aqui para entrar</span>
+          </p>
         </>
       )}
-      {form === 'comment' && (
+      {form === "comment" && (
         <>
-         <form id="commentform" onSubmit={handleSubmit(comment)}>
-         <input type="text"  {...register("author", {
-                  required: true,
-                })}>{localStorage.userId}</input>
-          <textarea form="commentform" {...register("text", {
-                  required: true,
-                  maxLength: 15,
-                })}></textarea>
-          <button type="submit" >Comenta</button>
-         </form>
+          <form id="commentform" onSubmit={handleSubmit(comment)}>
+            <input {...register("postId", { value: postId })} type="hidden" />
+            <input {...register("author", { value: localStorage.userId })} type="hidden" />
+            <textarea
+              form="commentform"
+              {...register("text", {
+                required: true,
+                maxLength: 15,
+              })}
+            ></textarea>
+            <button type="submit">Comenta</button>
+          </form>
         </>
       )}
     </div>

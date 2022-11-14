@@ -65,7 +65,7 @@ const Header = () => {
             </NavLink>
           )}
           {user && (
-            <a href="#" onClick={() => logout()}>
+            <a href="/" onClick={() => logout()}>
               Cerrar sesion
             </a>
           )}

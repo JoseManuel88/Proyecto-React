@@ -7,7 +7,7 @@ const INITIAL_STATE= {
 const commentReducer = (state=INITIAL_STATE, action) => {
     switch (action.type) {
         case "gettingComment":
-            return {...state, isLoading: true };
+            return {...INITIAL_STATE, isLoading: true };
         case "commentReceived":
             return {...state, isLoading: false, comments: action.payload};
         case "error":

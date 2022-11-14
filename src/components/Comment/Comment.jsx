@@ -1,20 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/Comment.scss";
-import { getIndividualComment } from "../../redux/comment/comment.actions";
+import { getComments } from "../../redux/comment/comment.actions";
 import Author from "../Author/Author";
 
 const Comment = ({ids}) => {
   const dispatch = useDispatch();
-  const { comments, error } = useSelector((state) => state.comment);
+  const { isLoading, comments, error } = useSelector((state) => state.comment);
 
   useEffect(() => {
-    dispatch(getIndividualComment(ids));
+    dispatch(getComments(ids));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div>
+    {isLoading && 
+    <p>Cargando comentarios...</p>}
+    {error &&
+      <p>{error}</p>}
     {comments &&
     comments.map((comment => {
         return (

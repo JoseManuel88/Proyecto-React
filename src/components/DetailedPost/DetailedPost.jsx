@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getIndividualPost } from "../../redux/post/post.actions";
-import { useForm } from "react-hook-form";
 import "../../styles/DetailedPost.scss";
 import Comment from "../Comment/Comment";
 import Formulario from "../Formulario/Formulario";
@@ -15,9 +14,8 @@ const DetailedPost = () => {
 
   useEffect(() => {
     dispatch(getIndividualPost(id));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+ console.log(detailPost)
   return (
     <div>
       {isLoading && <h2>Cargando datos...</h2>}
@@ -50,12 +48,13 @@ const DetailedPost = () => {
           <div className="detailed-post--comments">
             {detailPost.comments &&
                   <div>
+                  {console.log(detailPost.comments)}
                     <Comment ids={detailPost.comments} />
                   </div>
             }
                
           </div>
-         <Formulario type='comment'/>
+         <Formulario type='comment' postId={id}/>
             
         </div>
       )}

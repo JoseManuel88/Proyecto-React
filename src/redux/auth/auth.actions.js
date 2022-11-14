@@ -29,7 +29,7 @@ export const logoutUser = (navigate) => async(dispatch) =>{
 export const newUser = (formdata, navigate) => async(dispatch) =>{
     dispatch({type: 'register_user_start'});
     try {
-        const resultado = await API.post('users/create', formdata);
+        await API.post('users/create', formdata);
         dispatch({type: 'register_user_ok'});
         const result = await API.post('users/login', formdata)
         dispatch({ type: "login_user_ok", payload: result.data });
@@ -50,7 +50,6 @@ export const checkSession = (token, navigate) => async(dispatch) =>{
         dispatch({type: 'checkSession_ok', payload: {user: resultado.data, token:token}});
         localStorage.setItem('token', token);
         localStorage.setItem('userId', resultado.data._id);
-   
         navigate('/');
     }catch(error){
         dispatch({type: 'checkSession_error'});
