@@ -41,7 +41,7 @@ export const newUser = (formdata, navigate) => async(dispatch) =>{
         navigate('/');
         
     } catch (error) {
-        dispatch({type: 'register_user_error'});
+        dispatch({type: 'register_user_error',payload: error.message});
     }
 }
 

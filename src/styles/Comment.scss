@@ -1,0 +1,10 @@
+.comment {
+    border: dotted 1px;
+    font-size: 2vw;
+    &--author{
+        font-size: 0.5em;
+    }
+    &--text {
+        font-size: 0.8em;
+    }
+}
