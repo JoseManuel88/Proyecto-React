@@ -36,21 +36,6 @@ const Formulario = (type) => {
         <>
           <h2>Login</h2>
           <form onSubmit={handleSubmit(login)}>
-            {/* <div className="inputForm">
-            <label htmlFor="username">
-                <p>Nombre de Usuario</p>
-              </label>
-              <input
-              id="username"
-                type="text"
-                {...register("username", {
-                  required: true,
-                  maxLength: 15,
-                })}
-              />
-              {errors.username?.type === "required" && <p>El campo nombre es requerido</p>}
-              {errors.username?.type === "maxLength" && <p>El campo nombre debe tener menos de 15 caracteres</p>}
-            </div> */}
             <div className="inputForm">
             <label htmlFor="email">
                 <p>Email</p>

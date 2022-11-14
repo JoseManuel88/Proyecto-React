@@ -7,21 +7,25 @@ import "../../styles/Posts.scss";
 const Post = () => {
   const dispatch = useDispatch();
   const { isLoading, posts, error } = useSelector((state) => state.post);
+
   useEffect(() => {
     dispatch(getPosts());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <div className="posts">
       {isLoading && <h1>Cargando posts...</h1>}
+      {error && <h2>{error.message}</h2>}
       {posts &&
         posts.map((post) => {
           return (
             <Link to={`/post/${post._id}`} key={post._id}>
-            <div className="post">
-              <h2>{post.title}</h2>
-              <img src={post.img} alt={post.title} />
-              <h3>{post.subtitle}</h3>
-            </div>
+              <div className="post">
+                <h2>{post.title}</h2>
+                <img src={post.img} alt={post.title} />
+                <h3>{post.subtitle}</h3>
+              </div>
             </Link>
           );
         })}
