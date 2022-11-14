@@ -35,14 +35,15 @@ const Formulario = ({ type, postId }) => {
     dispatch(postNewComment(data, navigate));
     document.getElementById("commentform").reset();
   };
-  const newRecipe = (data) =>{
-    dispatch(createPost(data, navigate));
-    document.getElementById("recipeForm").reset();
-
+  const newRecipe = (data) =>{ 
     const formData = new FormData();
-    formData.append("ingredientes", data.ingredintes[0]);
-    formData.append("cantidad", data.cantidad);
-    formData.append("imagen", data.imagen[0]);
+    formData.append("title", data.title);
+    formData.append("subtitle", data.subtitle);
+    formData.append("text", data.text);
+    formData.append("img", data.img[0]);
+   /*  formData.append("select", ) */
+    console.log(data);
+    dispatch(createPost(formData, navigate));
   };
 
   return (
@@ -190,20 +191,23 @@ const Formulario = ({ type, postId }) => {
             <label>Subtítulo
             <input type={"text"} id="subtitle" {...register("subtitle", {required: true})}/>
             </label>
+            <label>Texto
+            <input type={"text"} id="text" {...register("text", {required: true})}/>
+            </label>
             <label>Foto
             <input type={"file"} id="img" {...register("img", {required: true})}/>
             </label>
             <label>Ingredientes
-            <input type={"text"} id="ingredients" {...register("ingredients", {required: true})}/>
-            <input type={"text"} id="quantity" {...register("quantity", {required: true})}/>
+            <input type={"text"} id="ingredients" {...register("ingredients")}/>
+            <input type={"text"} id="quantity" {...register("quantity")}/>
             </label>
             <label>Categoría
-            <select type={"select"} id="category" {...register("category", {required: true})}>
-              <option value="Guisos">Guisos</option>
-              <option value="Ensaladas">Ensaladas</option>
-              <option value="Postres">Postres</option>
-              <option value="Cocktails">Cocktails</option>
-              <option value="Otros">Otros</option>
+            <select type={"select"} id="section" {...register("section", {required: true})}>
+              <option value="guiso">Guisos</option>
+              <option value="ensalada">Ensaladas</option>
+              <option value="postre">Postres</option>
+              <option value="cocktail">Cocktails</option>
+              <option value="otro">Otros</option>
 
             </select>
             

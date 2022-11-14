@@ -8,7 +8,7 @@ const INITIAL_STATE= {
             case "creatingPost":
                 return {...INITIAL_STATE, isLoading: true};
             case "postCreated":
-                return {...INITIAL_STATE};
+                return {...INITIAL_STATE, isLoading:false};
             case "error":
                 return {...INITIAL_STATE, isLoading: false, error: action.payload};
             default: return state;

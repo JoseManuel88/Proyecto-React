@@ -50,7 +50,6 @@ export const checkSession = (token, navigate) => async(dispatch) =>{
         dispatch({type: 'checkSession_ok', payload: {user: resultado.data, token:token}});
         localStorage.setItem('token', token);
         localStorage.setItem('userId', resultado.data._id);
-        navigate('/');
     }catch(error){
         dispatch({type: 'checkSession_error'});
         localStorage.removeItem('token');
