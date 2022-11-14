@@ -2,7 +2,7 @@ import axios from "axios";
 import { API } from "../../shared/services/api";
 
 
-export const getIndividualComment = (ids) => async(dispatch)=> {
+export const getComments = (ids) => async(dispatch)=> {
     dispatch({type:'gettingComment'})
     
         try {
@@ -23,7 +23,7 @@ export const postNewComment = (formData) => async(dispatch)=>{
         await API.post("comments/create/"+formData.postId, formData)
         const post = await axios.get('https://proyecto-final-react-seven.vercel.app/posts/'+formData.postId)
         const comments = post.data.comments
-        dispatch(getIndividualComment(comments))
+        dispatch(getComments(comments))
     } catch (error) {
         dispatch({type:'error', payload: error})
     }
