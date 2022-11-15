@@ -35,13 +35,13 @@ const Formulario = ({ type, postId }) => {
     dispatch(postNewComment(data, navigate));
     document.getElementById("commentform").reset();
   };
-  const newRecipe = (data) =>{ 
+  const newRecipe = (data) => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("subtitle", data.subtitle);
     formData.append("text", data.text);
     formData.append("img", data.img[0]);
-    formData.append("section", data.section )
+    formData.append("section", data.section);
     dispatch(createPost(formData, navigate));
   };
 
@@ -170,9 +170,10 @@ const Formulario = ({ type, postId }) => {
           <form id="commentform" onSubmit={handleSubmit(comment)}>
             <input {...register("postId", { value: postId })} type="hidden" />
             <input {...register("author", { value: localStorage.userId })} type="hidden" />
-            <input type={"text"}
-            id="comment"
-            placeholder="Introduce aqui tu comentario"
+            <input
+              type={"text"}
+              id="comment"
+              placeholder="Introduce aqui tu comentario"
               {...register("text", {
                 required: true,
               })}
@@ -183,36 +184,42 @@ const Formulario = ({ type, postId }) => {
       )}
       {form === "newRecipe" && (
         <>
-          <form id="recipeForm" onSubmit={handleSubmit(newRecipe)}>
-            <label>Título
-            <input type={"text"} id="title"{...register("title",{required: true})}/>
-            </label>
-            <label>Subtítulo
-            <input type={"text"} id="subtitle" {...register("subtitle", {required: true})}/>
-            </label>
-            <label>Texto
-            <input type={"text"} id="text" {...register("text", {required: true})}/>
-            </label>
-            <label>Foto
-            <input type={"file"} id="img" {...register("img", {required: true})}/>
-            </label>
-            <label>Ingredientes
-            <input type={"text"} id="ingredients" {...register("ingredients")}/>
-            <input type={"text"} id="quantity" {...register("quantity")}/>
-            </label>
-            <label>Categoría
-            <select type={"select"} id="section" {...register("section", {required: true})}>
-              <option value="guiso">Guisos</option>
-              <option value="ensalada">Ensaladas</option>
-              <option value="postre">Postres</option>
-              <option value="cocktail">Cocktails</option>
-              <option value="otro">Otros</option>
-
-            </select>
-            
-            </label>
-            <button type="submit">Enviar receta</button>
-          </form>
+          <div className="recipeForm">
+            <form id="recipeForm" onSubmit={handleSubmit(newRecipe)}>
+              <label>
+                Título
+                <input type={"text"} id="title" {...register("title", { required: true })} />
+              </label>
+              <label>
+                Subtítulo
+                <input type={"text"} id="subtitle" {...register("subtitle", { required: true })} />
+              </label>
+              <label>
+                Texto
+                <input type={"text"} id="text" {...register("text", { required: true })} />
+              </label>
+              <label>
+                Foto
+                <input type={"file"} id="img" {...register("img", { required: true })} />
+              </label>
+              <span>Ingredientes</span>
+              <label>
+                <input type={"text"} id="ingredients" placeholder="Ingrediente" {...register("ingredients")} />
+                <input type={"text"} id="quantity" placeholder="Cantidad" {...register("quantity")} />
+              </label>
+              <label>
+                Categoría
+                <select type={"select"} id="section" {...register("section", { required: true })}>
+                  <option value="guiso">Guisos</option>
+                  <option value="ensalada">Ensaladas</option>
+                  <option value="postre">Postres</option>
+                  <option value="cocktail">Cocktails</option>
+                  <option value="otro">Otros</option>
+                </select>
+              </label>
+              <button type="submit">Enviar receta</button>
+            </form>
+          </div>
         </>
       )}
     </div>
