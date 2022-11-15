@@ -31,10 +31,25 @@ const Formulario = ({ type, postId }) => {
     dispatch(newUser(data, navigate));
   };
 
+  const [inputFields, setInputFields] = useState([{ name: "", quantity: "" }]);
+
+  const addFields = () => {
+    let newfield = {name: '', quantity: ''};
+
+    setInputFields([...inputFields, newfield]);
+  };
+
+  const handleFormChange = (index, event) => {
+    let data = [...inputFields];
+    data[index][event.target.name] = event.target.value;
+    setInputFields(data);
+ }
+
   const comment = (data) => {
     dispatch(postNewComment(data, navigate));
     document.getElementById("commentform").reset();
   };
+
   const newRecipe = (data) => {
     const formData = new FormData();
     formData.append("title", data.title);
@@ -42,6 +57,12 @@ const Formulario = ({ type, postId }) => {
     formData.append("text", data.text);
     formData.append("img", data.img[0]);
     formData.append("section", data.section);
+    let ingredients = []
+    inputFields.map((input, index) => {
+      ingredients.push(input)
+    })
+    formData.append('ingredients', JSON.stringify(ingredients));  
+    
     dispatch(createPost(formData, navigate));
   };
 
@@ -203,10 +224,15 @@ const Formulario = ({ type, postId }) => {
                 <input type={"file"} id="img" {...register("img", { required: true })} />
               </label>
               <span>Ingredientes</span>
-              <label>
-                <input type={"text"} id="ingredients" placeholder="Ingrediente" {...register("ingredients")} />
-                <input type={"text"} id="quantity" placeholder="Cantidad" {...register("quantity")} />
-              </label>
+                 {inputFields.map((input, index) => {
+                  return (
+                    <div className="ingredient-field" key={index}>
+                      <input name="name" placeholder="Ingrediente" value={input.name}  onChange={event => handleFormChange(index, event)}/>
+                      <input name="quantity" placeholder="Cantidad" value={input.quantity}  onChange={event => handleFormChange(index, event)}/>
+                    </div>
+                  );
+                })}
+              <span className="span--button" onClick={addFields}>Añadir otro...</span>
               <label>
                 Categoría
                 <select type={"select"} id="section" {...register("section", { required: true })}>
