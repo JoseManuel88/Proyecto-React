@@ -12,7 +12,7 @@ const DetailedPost = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { isLoading, detailPost, error } = useSelector((state) => state.post);
-  let user = localStorage.user;
+  const user = localStorage.user;
 
   useEffect(() => {
     dispatch(getIndividualPost(id));

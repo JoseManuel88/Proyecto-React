@@ -15,7 +15,7 @@ const Formulario = ({ type, postId }) => {
   } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isLoading, postCreated, error } = useSelector((state) => state.post);
+  const { isLoading, postCreated, error } = useSelector((state) => state.newPost);
 
   const [form, setform] = useState(type);
   const [password, setpassword] = useState("");
@@ -63,11 +63,10 @@ const Formulario = ({ type, postId }) => {
     formData.append("img", data.img[0]);
     formData.append("section", data.section);
     let ingredients = []
-    inputFields.map((input, index) => {
+    inputFields.map((input) => {
       ingredients.push(input)
     })
     formData.append('ingredients', JSON.stringify(ingredients));  
-    
     dispatch(createPost(formData, navigate));
   };
 
@@ -210,6 +209,10 @@ const Formulario = ({ type, postId }) => {
       )}
       {form === "newRecipe" && (
         <>
+        {isLoading && 
+        <h2>Creando post...</h2>}
+        {postCreated &&
+        <h2>Post creado, se te redirigira al post en unos segundos</h2>}
         {!isLoading &&
           <div className="recipeForm">
             <form id="recipeForm" onSubmit={handleSubmit(newRecipe)}>
@@ -254,10 +257,6 @@ const Formulario = ({ type, postId }) => {
             </form>
           </div>
         }
-        {isLoading && 
-        <h2>Creando post...</h2>}
-        {postCreated &&
-        <h2>Post creado, se te redirigira al post en unos segundos</h2>}
         </>
       )}
     </div>
