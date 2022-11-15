@@ -40,7 +40,11 @@ const Header = () => {
         {user && (
           <div className="logged-user">
             <p>{user}</p>
+          <button type="submit" onSubmit={Formulario}>{user && (
+          <NavLink to= "/newRecipe" className={({isActive})=>(isActive ? "active" : "inactive")}>
+          Envíanos tu receta</NavLink>)}</button>
           </div>
+
         )}
         <ul>
           <NavLink to="/guisos" className={({ isActive }) => (isActive ? "active" : "inactive")}>
@@ -72,9 +76,6 @@ const Header = () => {
           )}
         </div>
       </nav>
-      <button type="submit" onSubmit={Formulario}>{user && (
-          <NavLink to= "/newRecipe" className={({isActive})=>(isActive ? "active" : "inactive")}>
-          Envíanos tu receta</NavLink>)}</button>
       <div className="burger-menu" onClick={updateMenu}>
         <div className={burger_class}></div>
         <div className={burger_class}></div>
