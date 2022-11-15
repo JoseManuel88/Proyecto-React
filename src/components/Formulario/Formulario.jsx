@@ -39,6 +39,11 @@ const Formulario = ({ type, postId }) => {
     setInputFields([...inputFields, newfield]);
   };
 
+  const onDelete = (indexToDelete) => {
+    const newFields = inputFields.filter((d, index) => index !== indexToDelete);
+    setInputFields([...newFields]);
+  };
+
   const handleFormChange = (index, event) => {
     let data = [...inputFields];
     data[index][event.target.name] = event.target.value;
@@ -227,9 +232,10 @@ const Formulario = ({ type, postId }) => {
               <span>Ingredientes</span>
                  {inputFields.map((input, index) => {
                   return (
-                    <div className="ingredient-field" key={index}>
+                    <div className= 'ingredient-field' key={index}>
                       <input name="name" placeholder="Ingrediente" value={input.name}  onChange={event => handleFormChange(index, event)}/>
                       <input name="quantity" placeholder="Cantidad" value={input.quantity}  onChange={event => handleFormChange(index, event)}/>
+                      <p onClick={() => onDelete(index)}>X</p>
                     </div>
                   );
                 })}
