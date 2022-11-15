@@ -5,6 +5,7 @@ import { getIndividualPost } from "../../redux/post/post.actions";
 import "../../styles/DetailedPost.scss";
 import Comment from "../Comment/Comment";
 import Formulario from "../Formulario/Formulario";
+import Author from "../Author/Author";
 
 
 const DetailedPost = () => {
@@ -25,6 +26,10 @@ const DetailedPost = () => {
           <div className="detailed-post--img">
             <img src={detailPost.img} alt={detailPost.title} />
           </div>
+          <div className="detailed-post--author">
+          <h3>Receta enviada por:</h3>
+          <Author id={detailPost.author}/>
+        </div>
           <div className="detailed-post--underDiv">
             <div className="detailed-post--text">
               <h2>{detailPost.title}</h2>

@@ -9,6 +9,19 @@
   background-color: antiquewhite;
   padding-bottom: 1em;
 
+  &--author {
+    display: flex;
+    gap: 1em;
+    font-size: 0.5em;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+
+    p{
+      font-size: 1.2em;
+    }
+  }
+
   &--underDiv {
     display: flex;
     width: 90%;
@@ -22,11 +35,13 @@
       max-height: 17em;
       object-fit: cover;
     }
+    padding-bottom: 0;
   }
 
   &--text {
     width: 60%;
     padding: 1em;
+    padding-top: 0.5em;
     h2 {
       font-size: 1.3em;
     }

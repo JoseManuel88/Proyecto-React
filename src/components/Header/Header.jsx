@@ -40,9 +40,9 @@ const Header = () => {
         {user && (
           <div className="logged-user">
             <p>{user}</p>
-          <button type="submit" onSubmit={Formulario}>{user && (
+          {user && (
           <NavLink to= "/newRecipe" className={({isActive})=>(isActive ? "active" : "inactive")}>
-          Envíanos tu receta</NavLink>)}</button>
+          Envíanos tu receta</NavLink>)}
           </div>
 
         )}

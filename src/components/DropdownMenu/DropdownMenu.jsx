@@ -20,9 +20,7 @@ const DropdownMenu = () => {
             Login/Registro
           </NavLink>
         )}
-        {user && (
-          <p>{user}</p>
-        )}
+        {user && <p>{user}</p>}
         <li className="separator"></li>
         <NavLink to="/recetas-caseras" className={({ isActive }) => (isActive ? "active" : "inactive")}>
           Recetas caseras
@@ -38,8 +36,13 @@ const DropdownMenu = () => {
         </NavLink>
         {user && (
           <>
-          <li className="separator"></li>
-          <a href="#" onClick={() => logout()}>Cerrar sesion</a>
+            <li className="separator"></li>
+            <NavLink to="/newRecipe" className={({ isActive }) => (isActive ? "active" : "inactive")}>
+              Envíanos tu receta
+            </NavLink>
+            <a href="/" onClick={() => logout()}>
+              Cerrar sesion
+            </a>
           </>
         )}
       </ul>
