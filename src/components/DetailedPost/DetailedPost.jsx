@@ -33,7 +33,7 @@ const DetailedPost = () => {
             <div className="detailed-post--ingredients">
               <h3>Ingredientes</h3>
               <ul>
-                {detailPost.ingredients.map((ingredient) => {
+                {detailPost.ingredients && detailPost.ingredients.map((ingredient) => {
                   return (
                     <div key={ingredient._id} className="detailed-post--ingredients--list">
                       <li>{ingredient.name}</li>

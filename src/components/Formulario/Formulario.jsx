@@ -41,8 +41,7 @@ const Formulario = ({ type, postId }) => {
     formData.append("subtitle", data.subtitle);
     formData.append("text", data.text);
     formData.append("img", data.img[0]);
-   /*  formData.append("select", ) */
-    console.log(data);
+    formData.append("section", data.section )
     dispatch(createPost(formData, navigate));
   };
 
