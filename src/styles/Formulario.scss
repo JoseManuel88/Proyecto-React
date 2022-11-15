@@ -1,7 +1,6 @@
 .formulario {
   text-align: center;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  margin-top: 50px;
   form {
     margin-top: 20px;
   }
@@ -19,11 +18,16 @@
   }
 }
 
+.login--form {
+  padding-top: 50px;
+}
+
 .recipeForm {
   background-color: rgba(127, 255, 212, 0.305);
   width: 90%;
   margin: 0 auto;
   padding: 1em;
+  padding-top: 50px;
 
   .ingredient-field{
     width: 100%;
