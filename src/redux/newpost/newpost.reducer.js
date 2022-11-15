@@ -1,16 +1,17 @@
 const INITIAL_STATE= {
     isLoading: false,
-    error: false,
+    postCreated: false,
+    error: false
 };
 
     const newPostReducer = (state= INITIAL_STATE, action) => {
         switch(action.type){
             case "creatingPost":
-                return {...INITIAL_STATE, isLoading: true};
+                return {...state, isLoading: true};
             case "postCreated":
-                return {...INITIAL_STATE, isLoading:false};
+                return {...INITIAL_STATE, postCreated: true};
             case "error":
-                return {...INITIAL_STATE, isLoading: false, error: action.payload};
+                return {...INITIAL_STATE, error: action.payload};
             default: return state;
         }
     }

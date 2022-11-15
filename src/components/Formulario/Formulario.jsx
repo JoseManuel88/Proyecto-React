@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser, newUser } from "../../redux/auth/auth.actions";
 import { useForm } from "react-hook-form";
@@ -15,6 +15,7 @@ const Formulario = ({ type, postId }) => {
   } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { isLoading, postCreated, error } = useSelector((state) => state.post);
 
   const [form, setform] = useState(type);
   const [password, setpassword] = useState("");
@@ -35,7 +36,6 @@ const Formulario = ({ type, postId }) => {
 
   const addFields = () => {
     let newfield = {name: '', quantity: ''};
-
     setInputFields([...inputFields, newfield]);
   };
 
@@ -205,6 +205,7 @@ const Formulario = ({ type, postId }) => {
       )}
       {form === "newRecipe" && (
         <>
+        {!isLoading &&
           <div className="recipeForm">
             <form id="recipeForm" onSubmit={handleSubmit(newRecipe)}>
               <label>
@@ -215,9 +216,9 @@ const Formulario = ({ type, postId }) => {
                 Subtítulo
                 <input type={"text"} id="subtitle" {...register("subtitle", { required: true })} />
               </label>
+              <span>Texto</span>
               <label>
-                Texto
-                <input type={"text"} id="text" {...register("text", { required: true })} />
+                <textarea rows="10"  id="text" {...register("text", { required: true })} />
               </label>
               <label>
                 Foto
@@ -246,6 +247,11 @@ const Formulario = ({ type, postId }) => {
               <button type="submit">Enviar receta</button>
             </form>
           </div>
+        }
+        {isLoading && 
+        <h2>Creando post...</h2>}
+        {postCreated &&
+        <h2>Post creado, se te redirigira al post en unos segundos</h2>}
         </>
       )}
     </div>

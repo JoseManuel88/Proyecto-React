@@ -11,6 +11,7 @@ const DetailedPost = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { isLoading, detailPost, error } = useSelector((state) => state.post);
+  let user = localStorage.user;
 
   useEffect(() => {
     dispatch(getIndividualPost(id));
@@ -52,7 +53,9 @@ const DetailedPost = () => {
             }
                
           </div>
+          {user &&
          <Formulario type='comment' postId={id}/>
+          }
             
         </div>
       )}

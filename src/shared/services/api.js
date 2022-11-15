@@ -14,7 +14,7 @@ const APIHeaders = {
 
 
 export const API = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: 'https://proyecto-final-react-seven.vercel.app/',
     timeout: 5000,
     headers: APIHeaders
 })
@@ -33,7 +33,7 @@ const API2Headers = {
 
 
 export const API2 = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: 'https://proyecto-final-react-seven.vercel.app/',
     timeout: 15000,
     headers: API2Headers
 })
